@@ -1,6 +1,6 @@
-if shared.VapeExecuted then
-	local VERSION = "4.09"..(shared.VapePrivate and " PRIVATE" or "").." "..readfile("vape/commithash.txt"):sub(1, 6)
-	local baseDirectory = (shared.VapePrivate and "vapeprivate/" or "vape/")
+if shared.apeExecuted then
+	local VERSION = "1.00"..(shared.apePrivate and " PRIVATE" or "").." "..readfile("ape/commithash.txt"):sub(1, 6)
+	local baseDirectory = (shared.apePrivate and "apeprivate/" or "ape/")
 	local universalRainbowValue = 0
 	local getcustomasset = getsynasset or getcustomasset or function(location) return "rbxasset://"..location end
 	local requestfunc = syn and syn.request or http and http.request or http_request or fluxus and fluxus.request or request or function() end 
@@ -25,7 +25,7 @@ if shared.VapeExecuted then
 		ObjectsThatCanBeSaved = {["Gui ColorSliderColor"] = {Api = {Hue = 0.44, Sat = 1, Value = 1}}},
 	}
 
-	local translations = shared.VapeTranslation or {}
+	local translations = shared.apeTranslation or {}
 	local translatedlogo = false
 
 	coroutine.resume(coroutine.create(function()
@@ -35,7 +35,7 @@ if shared.VapeExecuted then
 			if universalRainbowValue > 1 then
 				universalRainbowValue = universalRainbowValue - 1
 			end
-		until not shared.VapeExecuted
+		until not shared.apeExecuted
 	end))
 
 	local capturedslider = nil
@@ -77,10 +77,10 @@ if shared.VapeExecuted then
 	end
 	GuiLibrary["MainGui"] = gui
 
-	local vapeCachedAssets = {}
-	local function vapeGithubRequest(scripturl)
-		if not isfile("vape/"..scripturl) then
-			local suc, res = pcall(function() return game:HttpGet("https://raw.githubusercontent.com/7GrandDadPGN/VapeV4ForRoblox/"..readfile("vape/commithash.txt").."/"..scripturl, true) end)
+	local apeCachedAssets = {}
+	local function apeGithubRequest(scripturl)
+		if not isfile("ape/"..scripturl) then
+			local suc, res = pcall(function() return game:HttpGet("https://raw.githubusercontent.com/DatEmage/ape/"..readfile("ape/commithash.txt").."/"..scripturl, true) end)
 			assert(suc, res)
 			assert(res ~= "404: Not Found", res)
 			if scripturl:find(".lua") then res = "--This watermark is used to delete the file if its cached, remove it to make the file persist after commits.\n"..res end
@@ -6366,7 +6366,7 @@ if shared.VapeExecuted then
 		frame2.Parent = image
 		local icon = Instance.new("ImageLabel")
 		icon.Name = "IconLabel"
-		icon.Image = downloadVapeAsset(customicon and "vape/"..customicon or "vape/assets/InfoNotification.png")
+		icon.Image = downloadVapeAsset(customicon and "vape/"..customicon or "ape/assets/InfoNotification.png")
 		icon.BackgroundTransparency = 1
 		icon.Position = UDim2.new(0, -6, 0, -6)
 		icon.Size = UDim2.new(0, 60, 0, 60)
