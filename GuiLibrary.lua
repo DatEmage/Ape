@@ -84,12 +84,12 @@ if shared.apeExecuted then
 			assert(suc, res)
 			assert(res ~= "404: Not Found", res)
 			if scripturl:find(".lua") then res = "--This watermark is used to delete the file if its cached, remove it to make the file persist after commits.\n"..res end
-			writefile("vape/"..scripturl, res)
+			writefile("ape/"..scripturl, res)
 		end
-		return readfile("vape/"..scripturl)
+		return readfile("ape/"..scripturl)
 	end
 	
-	local function downloadVapeAsset(path)
+	local function downloadApeAsset(path)
 		if not isfile(path) then
 			task.spawn(function()
 				local textlabel = Instance.new("TextLabel")
@@ -105,7 +105,7 @@ if shared.apeExecuted then
 				repeat task.wait() until isfile(path)
 				textlabel:Destroy()
 			end)
-			local suc, req = pcall(function() return vapeGithubRequest(path:gsub("vape/assets", "assets")) end)
+			local suc, req = pcall(function() return vapeGithubRequest(path:gsub("ape/assets", "assets")) end)
 			if suc and req then
 				writefile(path, req)
 			else
@@ -215,7 +215,7 @@ if shared.apeExecuted then
 	local hoverboxshadow = Instance.new("ImageLabel")
 	hoverboxshadow.AnchorPoint = Vector2.new(0.5, 0.5)
 	hoverboxshadow.Position = UDim2.new(0.5, 0, 0.5, 0)
-	hoverboxshadow.Image = downloadVapeAsset("vape/assets/WindowBlur.png")
+	hoverboxshadow.Image = downloadVapeAsset("ape/assets/WindowBlur.png")
 	hoverboxshadow.BackgroundTransparency = 1
 	hoverboxshadow.ZIndex = -1
 	hoverboxshadow.Visible = true
@@ -304,7 +304,7 @@ if shared.apeExecuted then
 
 	GuiLibrary.SaveSettings = function()
 		if loadedsuccessfully then
-			writefile(baseDirectory.."Profiles/"..(shared.CustomSaveVape or game.PlaceId)..".vapeprofiles.txt", game:GetService("HttpService"):JSONEncode(GuiLibrary.Profiles))
+			writefile(baseDirectory.."Profiles/"..(shared.CustomSaveVape or game.PlaceId)..".apeprofiles.txt", game:GetService("HttpService"):JSONEncode(GuiLibrary.Profiles))
 			local WindowTable = {}
 			for i,v in pairs(GuiLibrary.ObjectsThatCanBeSaved) do
 				if v.Type == "Window" then
@@ -374,7 +374,7 @@ if shared.apeExecuted then
 			for i,v in pairs(listfiles(baseDirectory.."Profiles")) do 
 				local newstr = v:gsub(baseDirectory.."Profiles", ""):sub(2, v:len())
 				local ext = (v:len() >= 12 and v:sub(v:len() - 12, v:len()))
-				if (ext and ext:find("vapeprofile") and ext:find("txt") == nil) then
+				if (ext and ext:find("apeprofile") and ext:find("txt") == nil) then
 					writefile(baseDirectory.."Profiles/"..newstr..".txt", readfile(baseDirectory.."Profiles/"..newstr))
 					if delfile then
 						delfile(baseDirectory.."Profiles/"..newstr)
@@ -382,16 +382,16 @@ if shared.apeExecuted then
 				end
 			end
 		end
-		if isfile("vape/Profiles/GUIPositions.vapeprofile.txt") and game.GameId == 2619619496 then
-			writefile("vape/Profiles/"..(game.GameId).."GUIPositions.vapeprofile.txt", readfile("vape/Profiles/GUIPositions.vapeprofile.txt"))
-			if delfile then delfile("vape/Profiles/GUIPositions.vapeprofile.txt") end
+		if isfile("ape/Profiles/GUIPositions.vapeprofile.txt") and game.GameId == 2619619496 then
+			writefile("ape/Profiles/"..(game.GameId).."GUIPositions.apeprofile.txt", readfile("ape/Profiles/GUIPositions.apeprofile.txt"))
+			if delfile then delfile("ape/Profiles/GUIPositions.apeprofile.txt") end
 		end
-		if shared.VapePrivate then
-			if isfile("vapeprivate/Profiles/"..(game.GameId).."GUIPositions.vapeprofile.txt") == false and isfile("vape/Profiles/"..(game.GameId).."GUIPositions.vapeprofile.txt") then
-				writefile("vapeprivate/Profiles/"..(game.GameId).."GUIPositions.vapeprofile.txt", readfile("vape/Profiles/"..(game.GameId).."GUIPositions.vapeprofile.txt"))
+		if shared.apePrivate then
+			if isfile("apeprivate/Profiles/"..(game.GameId).."GUIPositions.vapeprofile.txt") == false and isfile("ape/Profiles/"..(game.GameId).."GUIPositions.vapeprofile.txt") then
+				writefile("apeprivate/Profiles/"..(game.GameId).."GUIPositions.vapeprofile.txt", readfile("ape/Profiles/"..(game.GameId).."GUIPositions.vapeprofile.txt"))
 			end
-			if isfile("vapeprivate/Profiles/"..(shared.CustomSaveVape or game.PlaceId)..".vapeprofiles.txt") == false and isfile("vape/Profiles/"..(shared.CustomSaveVape or game.PlaceId)..".vapeprofiles.txt") then
-				writefile("vapeprivate/Profiles/"..(shared.CustomSaveVape or game.PlaceId)..".vapeprofiles.txt", readfile("vape/Profiles/"..(shared.CustomSaveVape or game.PlaceId)..".vapeprofiles.txt"))
+			if isfile("apeprivate/Profiles/"..(shared.CustomSaveVape or game.PlaceId)..".apeprofiles.txt") == false and isfile("vape/Profiles/"..(shared.CustomSaveVape or game.PlaceId)..".apeprofiles.txt") then
+				writefile("apeprivate/Profiles/"..(shared.CustomSaveVape or game.PlaceId)..".apeprofiles.txt", readfile("ape/Profiles/"..(shared.CustomSaveVape or game.PlaceId)..".apeprofiles.txt"))
 			end
 			if isfile("vapeprivate/Profiles/"..(GuiLibrary.CurrentProfile == "default" and "" or GuiLibrary.CurrentProfile)..(shared.CustomSaveVape or game.PlaceId)..".vapeprofile.txt") == false and isfile("vape/Profiles/"..(GuiLibrary.CurrentProfile == "default" and "" or GuiLibrary.CurrentProfile)..(shared.CustomSaveVape or game.PlaceId)..".vapeprofile.txt") then
 				writefile("vapeprivate/Profiles/"..(GuiLibrary.CurrentProfile == "default" and "" or GuiLibrary.CurrentProfile)..(shared.CustomSaveVape or game.PlaceId)..".vapeprofile.txt", readfile("vape/Profiles/"..(GuiLibrary.CurrentProfile == "default" and "" or GuiLibrary.CurrentProfile)..(shared.CustomSaveVape or game.PlaceId)..".vapeprofile.txt"))
