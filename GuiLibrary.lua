@@ -20,7 +20,7 @@ if shared.apeExecuted then
 		KeybindCaptured = false,
 		PressedKeybindKey = "",
 		ToggleNotifications = false,
-		Notifications = false,
+		Notifications = true,
 		ToggleTooltips = false,
 		ObjectsThatCanBeSaved = {["Gui ColorSliderColor"] = {Api = {Hue = 0.44, Sat = 1, Value = 1}}},
 	}
@@ -149,7 +149,7 @@ if shared.apeExecuted then
 	local searchbaricon = Instance.new("ImageLabel")
 	searchbaricon.BackgroundTransparency = 1
 	searchbaricon.ZIndex = 10
-	searchbaricon.Image = downloadVapeAsset("vape/assets/SearchBarIcon.png")
+	searchbaricon.Image = downloadApeAsset("ape/assets/SearchBarIcon.png")
 	searchbaricon.Size = UDim2.new(0, 14, 0, 14)
 	searchbaricon.Position = UDim2.new(1, -32, 0, 10)
 	searchbaricon.Parent = searchbarmain
@@ -168,7 +168,7 @@ if shared.apeExecuted then
 	local searchbarshadow = Instance.new("ImageLabel")
 	searchbarshadow.AnchorPoint = Vector2.new(0.5, 0.5)
 	searchbarshadow.Position = UDim2.new(0.5, 0, 0.5, 0)
-	searchbarshadow.Image = downloadVapeAsset("vape/assets/WindowBlur.png")
+	searchbarshadow.Image = downloadApeAsset("ape/assets/WindowBlur.png")
 	searchbarshadow.BackgroundTransparency = 1
 	searchbarshadow.ZIndex = -1
 	searchbarshadow.Size = UDim2.new(1, 6, 1, 6)
@@ -1766,8 +1766,8 @@ if shared.apeExecuted then
 				hue = hue or 0.44
 				sat = sat or 0.7
 				val = val or 0.9
-				slider3.Image = (sliderapi["RainbowValue"] and downloadVapeAsset("vape/assets/ColorSlider2.png") or downloadVapeAsset("vape/assets/ColorSlider1.png"))
-				sliderrainbow.Image = (sliderapi["RainbowValue"] and downloadVapeAsset("vape/assets/RainbowIcon2.png") or downloadVapeAsset("vape/assets/RainbowIcon1.png"))
+				slider3.Image = (sliderapi["RainbowValue"] and downloadVapeAsset("ape/assets/ColorSlider2.png") or downloadVapeAsset("vape/assets/ColorSlider1.png"))
+				sliderrainbow.Image = (sliderapi["RainbowValue"] and downloadVapeAsset("ape/assets/RainbowIcon2.png") or downloadVapeAsset("vape/assets/RainbowIcon1.png"))
 				if sliderapi["RainbowValue"] then
 					val = math.clamp(val, min, max)
 					text2.BackgroundColor3 = Color3.fromHSV(hue, sat, val)
@@ -1803,13 +1803,13 @@ if shared.apeExecuted then
 							else
 								coroutine.yield(heh)
 							end
-						until sliderapi["RainbowValue"] == false or shared.VapeExecuted == nil
+						until sliderapi["RainbowValue"] == false or shared.apeExecuted == nil
 					end))
 				end
 			end
 			sliderrainbow.MouseButton1Click:Connect(function()
 				sliderapi["SetRainbow"](not sliderapi["RainbowValue"])
-				sliderrainbow.Image = (sliderapi["RainbowValue"] and downloadVapeAsset("vape/assets/RainbowIcon2.png") or downloadVapeAsset("vape/assets/RainbowIcon1.png"))
+				sliderrainbow.Image = (sliderapi["RainbowValue"] and downloadApeAsset("ape/assets/RainbowIcon2.png") or downloadApeAsset("ape/assets/RainbowIcon1.png"))
 			end)
 			slider1.MouseButton1Down:Connect(function()
 				local x,y,xscale,yscale,xscale2 = RelativeXY(slider1, game:GetService("UserInputService"):GetMouseLocation())
@@ -1886,7 +1886,7 @@ if shared.apeExecuted then
 			buttonarrow.Position = UDim2.new(0, 0, 1, -4)
 			buttonarrow.BackgroundTransparency = 1
 			buttonarrow.Name = "ToggleArrow"
-			buttonarrow.Image = downloadVapeAsset("vape/assets/ToggleArrow.png")
+			buttonarrow.Image = downloadApeAsset("ape/assets/ToggleArrow.png")
 			buttonarrow.Visible = false
 			buttonarrow.Parent = buttontext
 			local toggleframe1 = Instance.new("Frame")
@@ -1994,7 +1994,7 @@ if shared.apeExecuted then
 			arrow.BackgroundTransparency = 1
 			arrow.Name = "RightArrow"
 			arrow.Position = UDim2.new(1, -20, 0, 16)
-			arrow.Image = downloadVapeAsset("vape/assets/RightArrow.png")
+			arrow.Image = downloadApeAsset("ape/assets/RightArrow.png")
 			arrow.Active = false
 			arrow.Parent = button
 			local buttonicon
@@ -2004,7 +2004,7 @@ if shared.apeExecuted then
 				buttonicon.Size = UDim2.new(0, argstable["IconSize"] - 2, 0, 14)
 				buttonicon.BackgroundTransparency = 1
 				buttonicon.Position = UDim2.new(0, 10, 0, 13)
-				buttonicon.Image = downloadVapeAsset(argstable["Icon"])
+				buttonicon.Image = downloadeAsset(argstable["Icon"])
 				buttonicon.Name = "ButtonIcon"
 				buttonicon.Parent = button
 			end
@@ -2108,7 +2108,7 @@ if shared.apeExecuted then
 		local expandbutton = Instance.new("ImageButton")
 		expandbutton.AutoButtonColor = false
 		expandbutton.Size = UDim2.new(0, 16, 0, 16)
-		expandbutton.Image = downloadVapeAsset("vape/assets/PinButton.png")
+		expandbutton.Image = downloadApeAsset("ape/assets/PinButton.png")
 		expandbutton.ImageColor3 = Color3.fromRGB(84, 84, 84)
 		expandbutton.BackgroundTransparency = 1
 		expandbutton.Name = "PinButton" 
@@ -2120,7 +2120,7 @@ if shared.apeExecuted then
 		optionsbutton.Position = UDim2.new(1, -16, 0, 11)
 		optionsbutton.Name = "OptionsButton"
 		optionsbutton.BackgroundTransparency = 1
-		optionsbutton.Image = downloadVapeAsset("vape/assets/MoreButton3.png")
+		optionsbutton.Image = downloadApeAsset("ape/assets/MoreButton3.png")
 		optionsbutton.Parent = windowtitle
 		local children = Instance.new("Frame")
 		children.BackgroundTransparency = 1
@@ -2480,7 +2480,7 @@ if shared.apeExecuted then
 			local windowshadow = Instance.new("ImageLabel")
 			windowshadow.AnchorPoint = Vector2.new(0.5, 0.5)
 			windowshadow.Position = UDim2.new(0.5, 0, 0.5, 0)
-			windowshadow.Image = downloadVapeAsset("vape/assets/WindowBlur.png")
+			windowshadow.Image = downloadApeAsset("ape/assets/WindowBlur.png")
 			windowshadow.BackgroundTransparency = 1
 			windowshadow.ZIndex = -1
 			windowshadow.Size = UDim2.new(1, 6, 1, 6)
